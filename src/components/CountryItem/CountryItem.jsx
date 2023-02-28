@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const CountryItem = ({ item }) => {
 	if (item) {
 		const { name, cca3, cioc, population, region, capital, flags } = item;
-		
+
 		return (
 			<div
-				className=" bg-white cursor-pointer hover:scale-105 duration-500 shadow-2xl shadow-black hover:shadow-xl hover:shadow-black"
+				className=" bg-white cursor-pointer hover:scale-105 duration-500 shadow-2xl shadow-black hover:shadow-xl hover:shadow-black dark:bg-gray-700 dark:text-gray-200"
 				style={{
 					borderRadius: "5px",
 				}}>

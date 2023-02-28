@@ -28,8 +28,10 @@ const Navbar = () => {
 					}}
 					className="flex items-center gap-3">
 					{mode == "light" && <FaRegMoon />}
-					{mode == "dark" && <FaRegSun />}
-					<p>
+					{mode == "dark" && <FaRegSun className="text-gray-200" />}
+					<p
+						className="dark:text-gray-200
+					">
 						{mode === "light" && "Dark"}
 						{mode === "dark" && "Light"} Mode
 					</p>

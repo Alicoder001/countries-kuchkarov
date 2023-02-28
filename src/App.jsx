@@ -20,12 +20,17 @@ const App = () => {
 	return (
 		<Router>
 			<div className={mode}>
-				<Navbar />
-				{(pending || pendingg) && <Loading />}
-				<Routes>
-					<Route path="/" element={<Main />} />
-					<Route path={"/country=name/:name"} element={<About />} />
-				</Routes>
+				<div className="dark:bg-slate-800">
+					<Navbar />
+					{(pending || pendingg) && <Loading />}
+					<Routes>
+						<Route path="/" element={<Main />} />
+						<Route
+							path={"/country=name/:name"}
+							element={<About />}
+						/>
+					</Routes>
+				</div>
 			</div>
 		</Router>
 	);

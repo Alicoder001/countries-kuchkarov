@@ -6,7 +6,7 @@ const Filter = () => {
 	const { changeUrl, changeRegion, changeType } = useUrl();
 	return (
 		<select
-			className="outline-none rounded px-6"
+			className="outline-none rounded px-6 dark:bg-gray-700 dark:text-gray-200"
 			onChange={(e) => {
 				changeRegion(e.target.value);
 				changeType("filter");

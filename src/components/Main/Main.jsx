@@ -5,7 +5,9 @@ import Formm from "../Formm/Formm";
 
 const Main = () => {
 	return (
-		<div style={{ maxWidth: "1440px" }} className=" mx-auto px-20 py-12">
+		<div
+			style={{ maxWidth: "1440px" }}
+			className=" mx-auto px-20 py-12 h-full">
 			<Formm />
 			<CountryList />
 		</div>
