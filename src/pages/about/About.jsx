@@ -36,7 +36,7 @@ const About = () => {
 					<BsArrowLeft className="dark:text-gray-200 text-2xl" />
 					<p>Back</p>
 				</Link>
-				<div className="flex gap-28 text-gray-200">
+				<div className="flex gap-28 dark:text-gray-200">
 					<img
 						style={{ width: "560px", height: "401px" }}
 						src={flags.png}
