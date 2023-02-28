@@ -20,7 +20,7 @@ const App = () => {
 	return (
 		<Router>
 			<div className={mode}>
-				<div className="dark:bg-slate-800">
+				<div className="dark:bg-slate-800 duration-300">
 					<Navbar />
 					{(pending || pendingg) && <Loading />}
 					<Routes>

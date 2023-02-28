@@ -26,14 +26,17 @@ const About = () => {
 		} = data[0];
 
 		return (
-			<div style={{ maxWidth: "1440px" }} className="mx-auto px-20">
+			<div
+				style={{ maxWidth: "1440px" }}
+				className="mx-auto px-20 min-h-screen">
 				<Link
 					style={{ width: "136px" }}
 					to={"/"}
-					className="flex gap-3 mt-20 mb-20 items-center px-4 py-1 border-4 rounded">
-					<BsArrowLeft /> Back
+					className="flex gap-3 mt-20 mb-20 items-center px-4 py-1 border-4 dark:bg-slate-700 dark:border-gray-200 rounded text-2xl dark:text-gray-200 ">
+					<BsArrowLeft className="dark:text-gray-200 text-2xl" />
+					<p>Back</p>
 				</Link>
-				<div className="flex gap-28">
+				<div className="flex gap-28 text-gray-200">
 					<img
 						style={{ width: "560px", height: "401px" }}
 						src={flags.png}
@@ -94,7 +97,7 @@ const About = () => {
 											<Link
 												key={border}
 												to={`/country=name/${border}`}
-												className="px-5 py-1  shadow-md duration-300 hover:scale-105 shadow-black hover:bg-slate-300 rounded cursor-pointer">
+												className="px-5 py-1  shadow-md duration-300 hover:scale-105 shadow-black hover:bg-slate-300 dark:bg-gray-700 dark:hover:bg-gray-700 rounded cursor-pointer">
 												{border}
 											</Link>
 										);

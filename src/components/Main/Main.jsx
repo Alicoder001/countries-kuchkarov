@@ -7,7 +7,7 @@ const Main = () => {
 	return (
 		<div
 			style={{ maxWidth: "1440px" }}
-			className=" mx-auto px-20 py-12 h-full">
+			className=" mx-auto px-20 py-12 min-h-screen">
 			<Formm />
 			<CountryList />
 		</div>
