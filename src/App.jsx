@@ -11,15 +11,15 @@ import useUrl from './hooks/useUrl';
 import useAbout from './hooks/useAbout';
 import Modal from './components/modal/modal';
 const App = () => {
-	// const { pending } = useFetch('app loading');
-	// const { pendingg } = useAbout();
+	const { pending } = useFetch('app loading');
+	const { pendingg } = useAbout();
 	const { mode, modal } = useUrl();
 	return (
 		<Router>
 			<div className={mode}>
 				<div className='dark:bg-slate-800 duration-300'>
 					<Navbar />
-					{/* {(pending || pendingg) && <Loading />} */}
+					
 					<Routes>
 						<Route path='/' element={<Main />} />
 						<Route path={'/country=name/:name'} element={<About />} />

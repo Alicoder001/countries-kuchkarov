@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import useUrl from './useUrl';
-const useFetch = () => {
+const useFetch = (info = '') => {
 	const { url, page, modal } = useUrl();
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
@@ -22,7 +22,6 @@ const useFetch = () => {
 			if (info !== 'about' || (info === 'about' && Array.isArray(data))) {
 				setData(data);
 			}
-			setData(data);
 		} catch (err) {
 			setData(null);
 			setError(err.message);
@@ -52,9 +51,7 @@ const useFetch = () => {
 		}
 	};
 	useEffect(() => {
-	
 		getData(url);
-	
 	}, [url, modal]);
 	return { data, pending, error, url, updateData };
 };
