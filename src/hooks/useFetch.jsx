@@ -19,9 +19,9 @@ const useFetch = () => {
 			setPending(false);
 
 			const data = await req.json();
-			// if (info !== 'about' || (info === 'about' && Array.isArray(data))) {
-			// 	setData(data);
-			// }
+			if (info !== 'about' || (info === 'about' && Array.isArray(data))) {
+				setData(data);
+			}
 			setData(data);
 		} catch (err) {
 			setData(null);
@@ -52,9 +52,9 @@ const useFetch = () => {
 		}
 	};
 	useEffect(() => {
-		console.log('fetch', url);
+	
 		getData(url);
-		console.log('salom')
+	
 	}, [url, modal]);
 	return { data, pending, error, url, updateData };
 };
