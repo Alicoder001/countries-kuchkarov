@@ -1,60 +1,86 @@
-import { createContext, useReducer } from "react";
+/** @format */
+
+import { createContext, useReducer } from 'react';
 const UseContext = createContext();
-const handleState = (state, action) => {
+const handleState = (state, action, h) => {
 	switch (action.type) {
-		case "changeUrl":
+		case 'changeUrl':
 			return { ...state, url: action.payload };
-		case "isHome":
+		case 'isHome':
 			return { ...state, home: action.payload };
-		case "region":
+		case 'region':
 			return { ...state, region: action.payload };
-		case "search":
+		case 'search':
 			return { ...state, search: action.payload };
-		case "type":
+		case 'type':
 			return { ...state, type: action.payload };
-		case "mode":
+		case 'mode':
 			return { ...state, mode: action.payload };
+		case 'limit':
+			return { ...state, limit: action.payload };
+		case 'skip':
+			return { ...state, skip: action.payload };
+		case 'len':
+			return { ...state, len: action.payload };
+		case 'page':
+			return { ...state, page: action.payload };
+		case 'changeId':
+			return { ...state, id: action.payload };
+		case 'setModal':
+			return { ...state, modal: action.payload };
 		default:
 			state;
 	}
 };
 const UrlProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(handleState, {
-		url: "https://restcountries.com/v3.1/all",
+		url: 'https://kuchkarov-countries-api.onrender.com/all?_page=1',
 		home: true,
-		mode: "light",
-		region: "All",
-		search: "All",
-		type: null,
+		mode: 'light',
+		region: 'all',
+		page: 1,
+		limit: 20,
+		skip: 0,
+		len: 255,
+		id: null,
+		modal: false,
+		refresh: false,
+		changePage(page) {
+			dispatch({ type: 'page', payload: page });
+		},
+		changeLen(len) {
+			dispatch({ type: 'len', payload: len });
+		},
+
+		changeLimit(limit) {
+			dispatch({ type: 'limit', payload: limit });
+		},
+		changeSkip(skip) {
+			dispatch({ type: 'skip', payload: skip });
+		},
+		changeRegion(region) {
+			dispatch({ type: 'region', payload: region });
+		},
+		changeUrl(url, info) {
+			dispatch({ type: 'changeUrl', payload: url });
+	
+		},
+		changeId(id) {
+			dispatch({ type: 'changeId', payload: id });
+		},
+
+		changeMode(mode) {
+			dispatch({ type: 'mode', payload: mode });
+		},
+		setModal(modal) {
+			dispatch({ type: 'setModal', payload: modal });
+		},
 	});
-	const changeUrl = (url) => {
-		dispatch({ type: "changeUrl", payload: url });
-	};
-	const isHome = (home) => {
-		dispatch({ type: "isHome", payload: home });
-	};
-	const changeRegion = (region) => {
-		dispatch({ type: "region", payload: region });
-	};
-	const changeSearch = (search) => {
-		dispatch({ type: "search", payload: search });
-	};
-	const changeType = (type) => {
-		dispatch({ type: "type", payload: type });
-	};
-	const changeMode = (mode) => {
-		dispatch({ type: "mode", payload: mode });
-	};
+
 	return (
 		<UseContext.Provider
 			value={{
 				...state,
-				changeUrl,
-				isHome,
-				changeRegion,
-				changeSearch,
-				changeType,
-				changeMode,
 			}}>
 			{children}
 		</UseContext.Provider>

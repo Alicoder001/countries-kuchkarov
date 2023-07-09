@@ -24,7 +24,7 @@ const Navbar = () => {
 						} else if (mode === "dark") {
 							changeMode("light");
 						}
-						console.log(mode);
+				
 					}}
 					className="flex items-center gap-3">
 					{mode == "light" && <FaRegMoon />}

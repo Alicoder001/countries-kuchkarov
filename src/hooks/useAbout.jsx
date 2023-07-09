@@ -11,11 +11,9 @@ const useAbout = () => {
 		setPending(true);
 		try {
 			const req = await fetch(url);
-
 			if (!req.ok) {
 				throw new Error("Wrong!");
 			}
-
 			setPending(false);
 			const data = await req.json();
 			setData(data);

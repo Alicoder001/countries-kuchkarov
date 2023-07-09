@@ -1,36 +1,62 @@
-import React, { useEffect, useState } from "react";
-import useUrl from "./useUrl";
+/** @format */
 
+import React, { useEffect, useState } from 'react';
+import useUrl from './useUrl';
 const useFetch = () => {
-	const { url } = useUrl();
+	const { url, page, modal } = useUrl();
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
 	const [pending, setPending] = useState(false);
-	
 
-	const getData = async (url) => {
+	const getData = async (urll) => {
 		setPending(true);
 		try {
-			const req = await fetch(url);
-
+			const req = await fetch(urll);
+			console.log('innerFetch:', urll);
 			if (!req.ok) {
-				throw new Error("Wrong!");
+				throw new Error('Wrong!');
 			}
-
 			setPending(false);
+
 			const data = await req.json();
+			// if (info !== 'about' || (info === 'about' && Array.isArray(data))) {
+			// 	setData(data);
+			// }
 			setData(data);
-			
 		} catch (err) {
+			setData(null);
 			setError(err.message);
 			console.log(err);
 		}
 	};
 
+	const updateData = async (data, url) => {
+		setPending(true);
+		try {
+			const req = await fetch(url, {
+				method: 'PATCH',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+				},
+			});
+			console.log('innerFetch:', url);
+			if (!req.ok) {
+				throw new Error('Wrong! Not updated! ');
+			}
+			setPending(false);
+		} catch (err) {
+			setPending(false);
+			setError(err.message);
+			console.log(err);
+		}
+	};
 	useEffect(() => {
+		console.log('fetch', url);
 		getData(url);
-	}, [url]);
-	return { data, pending, error };
+		console.log('salom')
+	}, [url, modal]);
+	return { data, pending, error, url, updateData };
 };
 
 export default useFetch;

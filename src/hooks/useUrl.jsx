@@ -4,7 +4,7 @@ import { UseContext } from "../Context/UseContext";
 const useUrl = () => {
 	const context = useContext(UseContext);
 	if (!context) {
-		throw new Error("klfalksdfmasdfmlasdmf");
+		
 	}
 	return context;
 };

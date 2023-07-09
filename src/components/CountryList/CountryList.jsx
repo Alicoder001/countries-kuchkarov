@@ -1,46 +1,32 @@
-import React, { useEffect, useState } from "react";
-import CountryItem from "../CountryItem/CountryItem";
-import useFetch from "../../hooks/useFetch";
-import { Link, useParams } from "react-router-dom";
-import Loading from "../Loading/Loading";
-import useUrl from "../../hooks/useUrl";
+/** @format */
+
+import React from 'react';
+import CountryItem from '../CountryItem/CountryItem';
+import useFetch from '../../hooks/useFetch';
+import useUrl from '../../hooks/useUrl';
+import { useEffect } from 'react';
 
 const CountryList = () => {
-	const { changeUrl, home, region, search, type } = useUrl();
-	const regionn = region;
+	const { changeLimit, changeSkip, changeLen } = useUrl();
+	const { data: dataa } = useFetch();
+	let data = dataa && dataa.countries;
 	useEffect(() => {
-		changeUrl("https://restcountries.com/v3.1/all");
-	}, [home]);
-	const { data } = useFetch();
+		if (dataa) {
+			changeLimit(dataa.limit);
+			changeSkip(dataa.skip);
+			changeLen(dataa.total);
+		}
+	}, [dataa]);
 	return (
 		<div
 			style={{
-				gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))",
-				gap: "75px",
+				gridTemplateColumns: 'repeat(auto-fill,minmax(250px,1fr))',
+				gap: '75px',
 			}}
-			className="grid my-12 ">
+			className='grid my-12 '>
 			{data &&
 				data.map((item) => {
-					return (
-						<CountryItem
-							key={item.name.common}
-							item={
-								type == "filter"
-									? regionn != "All"
-										? item.region == regionn
-											? item
-											: null
-										: item
-									: type == "search"
-									? item.name.common
-											.toLowerCase()
-											.includes(search.toLowerCase())
-										? item
-										: null
-									: item
-							}
-						/>
-					);
+					return <CountryItem key={item.id} item={item} />;
 				})}
 		</div>
 	);
